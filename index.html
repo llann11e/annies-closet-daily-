@@ -1,1 +1,1097 @@
 
+
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="theme-color" content="#fff8fa">
+
+<title>Annie's Closet ♡</title>
+
+<style>
+
+:root{
+
+  --pink:#d69baa;
+
+  --deep:#805965;
+
+  --light:#fff8fa;
+
+  --pale:#f6e7ec;
+
+  --line:#efd9e0;
+
+  --text:#59474d;
+
+}
+
+*{box-sizing:border-box}
+
+body{
+
+  margin:0;background:var(--light);color:var(--text);
+
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif;
+
+  font-size:16px;
+
+}
+
+header{
+
+  position:sticky;top:0;z-index:5;
+
+  background:#fffafd;border:1px solid var(--line);
+
+  border-radius:0 0 22px 22px;padding:17px;
+
+  display:flex;align-items:center;justify-content:space-between;
+
+}
+
+.brand{text-align:center;flex:1}
+
+.brand h1{font-family:Georgia,serif;font-size:27px;margin:0;color:var(--deep)}
+
+.brand p{letter-spacing:3px;font-size:11px;color:#b88d9a;margin:5px 0 0}
+
+button,select,input,textarea{font:inherit}
+
+button{cursor:pointer}
+
+.menu-btn,.heart-btn{
+
+  background:#fff4f7;border:1px solid var(--line);
+
+  border-radius:12px;padding:10px 14px;color:var(--deep);
+
+}
+
+.drawer{
+
+  display:none;position:fixed;z-index:20;inset:0;
+
+  background:#0005;
+
+}
+
+.drawer.open{display:block}
+
+.drawer-content{
+
+  width:min(85%,360px);height:100%;overflow:auto;
+
+  background:#fffafd;padding:22px;
+
+}
+
+.drawer-title{font:28px Georgia;color:var(--deep);margin:12px 0 28px}
+
+.nav{
+
+  display:block;width:100%;text-align:left;
+
+  border:0;border-bottom:1px solid var(--line);
+
+  background:transparent;padding:17px 12px;
+
+  color:var(--text);font-size:18px;border-radius:12px;
+
+}
+
+.nav.active{background:var(--pale);color:var(--deep);font-weight:700}
+
+main{max-width:850px;margin:auto;padding:18px 15px 35px}
+
+.page{display:none}
+
+.page.active{display:block}
+
+.card{
+
+  background:white;border:1px solid var(--line);
+
+  border-radius:22px;padding:20px;margin-bottom:15px;
+
+}
+
+h2{font-size:21px;color:var(--deep);margin:0 0 18px}
+
+h3{font-size:17px;margin:12px 0;color:var(--deep)}
+
+.sub{color:#ad8994;font-size:13px;margin-bottom:15px}
+
+label{display:block;font-weight:600;margin:15px 0 8px}
+
+input,select,textarea{
+
+  width:100%;padding:13px 14px;border:1px solid #ead8de;
+
+  border-radius:14px;background:#fffdfd;color:var(--text);
+
+  outline:none;min-height:48px;
+
+}
+
+input:focus,select:focus,textarea:focus{border-color:var(--pink)}
+
+textarea{min-height:90px;resize:vertical}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+.btn{
+
+  background:var(--pink);color:white;border:0;
+
+  padding:14px 18px;border-radius:14px;font-weight:700;
+
+}
+
+.btn.secondary{background:#f6e8ed;color:var(--deep)}
+
+.btn.block{width:100%;margin-top:18px}
+
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+.money{color:#ae7488;font-weight:700}
+
+.hero{background:var(--pale);padding:23px;border-radius:20px}
+
+.hero .big{font-size:29px;color:#ae7488;font-weight:700}
+
+.shop-card,.record,.status-card,.pickup-card{
+
+  background:white;border:1px solid var(--line);
+
+  border-radius:17px;padding:17px;margin-bottom:12px;
+
+}
+
+.shop-card{cursor:pointer}
+
+.shop-card:active{background:var(--pale)}
+
+.small{font-size:13px;color:#aa8791}
+
+.pill{
+
+  display:inline-block;background:#f8edf1;color:#a87989;
+
+  border-radius:9px;padding:6px 9px;font-size:12px;margin:5px 4px 0 0;
+
+}
+
+.bar-bg{height:10px;background:#f2e4e9;border-radius:20px;overflow:hidden;margin:7px 0 15px}
+
+.bar{height:100%;background:#c88fa1;border-radius:20px}
+
+.detail{display:none;background:#fff7f9;padding:12px;border-radius:12px;margin-top:12px}
+
+.detail.open{display:block}
+
+.photo-preview{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+.photo-preview img{width:85px;height:85px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
+
+.back{margin-bottom:15px}
+
+.empty{text-align:center;padding:25px;color:#b18e98}
+
+footer{text-align:center;color:#b18e98;font:12px Georgia;padding:20px}
+
+@media(min-width:650px){
+
+  main{padding-top:25px}
+
+  .grid.shops{grid-template-columns:repeat(3,1fr)}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <div class="brand">
+
+    <h1>Annie's Closet ♡</h1>
+
+    <p>MY SHOPPING DIARY</p>
+
+  </div>
+
+  <button class="heart-btn" onclick="showPage('首頁')">♡</button>
+
+</header>
+
+<div class="drawer" id="drawer" onclick="if(event.target===this)toggleMenu()">
+
+ <div class="drawer-content">
+
+  <div class="row">
+
+   <div class="drawer-title">Annie's Closet ♡</div>
+
+   <button class="menu-btn" onclick="toggleMenu()">×</button>
+
+  </div>
+
+  <p class="small">MY SHOPPING DIARY</p>
+
+  <div id="navs"></div>
+
+ </div>
+
+</div>
+
+<main>
+
+<section class="page active" id="首頁">
+
+ <div class="hero">
+
+  <h2>Welcome to Annie's Closet ♡</h2>
+
+  <div class="big" id="allTotal">NT$0</div>
+
+  <div class="small">所有購物紀錄總計</div>
+
+  <p id="recordCount">0 筆購物紀錄</p>
+
+ </div>
+
+ <div class="grid">
+
+  <button class="btn secondary" onclick="showPage('新增購物紀錄')">＋ 新增購物紀錄</button>
+
+  <button class="btn secondary" onclick="showPage('店家總覽')">✨ 店家總覽</button>
+
+  <button class="btn secondary" onclick="showPage('我的購物清單')">🛍️ 我的購物清單</button>
+
+  <button class="btn secondary" onclick="showPage('取貨地點')">📦 取貨地點</button>
+
+  <button class="btn secondary" onclick="showPage('貨況管理')">🚚 貨況管理</button>
+
+  <button class="btn secondary" onclick="showPage('每月分類花費總表')">♡ 每月花費總表</button>
+
+ </div>
+
+</section>
+
+<section class="page" id="新增購物紀錄">
+
+ <div class="card">
+
+  <h2>♡ 新增購物紀錄</h2>
+
+  <label>商店名稱 *</label>
+
+  <select id="shop" onchange="customField('shop','shopCustom',['蝦皮（自行填寫）','其他（自行填寫）'])"></select>
+
+  <input id="shopCustom" placeholder="請輸入店家名稱／蝦皮賣場名稱" hidden>
+
+  <label>購買金額（新台幣） *</label>
+
+  <input id="amount" type="number" min="1" placeholder="請輸入金額">
+
+  <label>購買日期 *</label>
+
+  <input id="date" type="date">
+
+  <label>商品分類 *</label>
+
+  <select id="category" onchange="customField('category','categoryCustom',['其他（自行填寫）'])"></select>
+
+  <input id="categoryCustom" placeholder="請輸入商品分類" hidden>
+
+  <label>取貨地點 *</label>
+
+  <select id="pickup" onchange="customField('pickup','pickupCustom',['其他（自行填寫）'])"></select>
+
+  <input id="pickupCustom" placeholder="請輸入取貨地點" hidden>
+
+  <label>付款方式 *</label>
+
+  <select id="payment" onchange="customField('payment','paymentCustom',['其他（自行填寫）'])"></select>
+
+  <input id="paymentCustom" placeholder="請輸入付款方式" hidden>
+
+  <label>貨況 *</label>
+
+  <select id="status"></select>
+
+  <label>商品名稱</label>
+
+  <input id="product" placeholder="請輸入商品名稱">
+
+  <label>商品圖片</label>
+
+  <input id="photos" type="file" accept="image/*" multiple onchange="previewPhotos()">
+
+  <div class="photo-preview" id="photoPreview"></div>
+
+  <label>備註（選填）</label>
+
+  <textarea id="note" placeholder="商品顏色、尺寸、訂單編號等"></textarea>
+
+  <button class="btn block" onclick="saveRecord()">＋ 儲存購物紀錄</button>
+
+ </div>
+
+</section>
+
+<section class="page" id="店家總覽">
+
+ <div class="card">
+
+  <h2>✨ 店家總覽</h2>
+
+  <input id="shopSearch" placeholder="搜尋店家名稱" oninput="renderShops()">
+
+  <div class="grid shops" id="shopList"></div>
+
+ </div>
+
+ <div class="card">
+
+  <h2>所有店家花費</h2>
+
+  <div id="shopBars"></div>
+
+ </div>
+
+</section>
+
+<section class="page" id="店家明細">
+
+ <button class="btn secondary back" onclick="showPage('店家總覽')">← 返回店家總覽</button>
+
+ <div class="card">
+
+  <h2 id="shopDetailTitle">店家明細</h2>
+
+  <div id="shopDetails"></div>
+
+ </div>
+
+</section>
+
+<section class="page" id="我的購物清單">
+
+ <div class="card">
+
+  <h2>♡ 我的購物清單</h2>
+
+  <input id="recordSearch" placeholder="搜尋店家或商品" oninput="renderRecords()">
+
+  <div id="recordList"></div>
+
+ </div>
+
+</section>
+
+<section class="page" id="取貨地點">
+
+ <div class="card">
+
+  <h2>📦 取貨地點</h2>
+
+  <div id="pickupList"></div>
+
+ </div>
+
+</section>
+
+<section class="page" id="貨況管理">
+
+ <div class="card">
+
+  <h2>🚚 貨況管理</h2>
+
+  <div id="statusList"></div>
+
+ </div>
+
+</section>
+
+<section class="page" id="每月分類花費總表">
+
+ <div class="card">
+
+  <h2>♡ 月份花費回顧</h2>
+
+  <p class="sub">選擇月份，查看總花費、購買筆數及各分類支出。</p>
+
+  <label>選擇要查看的月份</label>
+
+  <input type="month" id="month" onchange="renderMonthly()">
+
+  <div class="hero">
+
+   <div class="small" id="monthTitle"></div>
+
+   <div class="big" id="monthTotal">NT$0</div>
+
+   <div class="small" id="monthCount">0 筆</div>
+
+  </div>
+
+  <h3>各分類花費</h3>
+
+  <div id="categoryBars"></div>
+
+  <h3>該月購買明細</h3>
+
+  <div id="monthDetails"></div>
+
+ </div>
+
+</section>
+
+<section class="page" id="資料備份">
+
+ <div class="card">
+
+  <h2>💾 資料備份</h2>
+
+  <p class="sub">備份購物紀錄，或從先前的備份還原。</p>
+
+  <button class="btn block" onclick="exportData()">下載資料備份 JSON</button>
+
+  <label>匯入備份</label>
+
+  <input type="file" accept=".json,application/json" onchange="importData(event)">
+
+  <button class="btn secondary block" onclick="if(confirm('確定清空所有購物紀錄？')){records=[];saveData();refresh()}">清空所有紀錄</button>
+
+ </div>
+
+</section>
+
+</main>
+
+<footer>Annie's Closet ♡ MY SHOPPING DIARY</footer>
+
+<script>
+
+const menus=[
+
+ ["首頁","🏠"],["新增購物紀錄","＋"],
+
+ ["店家總覽","✨"],["我的購物清單","🛍️"],
+
+ ["取貨地點","📦"],["貨況管理","🚚"],
+
+ ["每月分類花費總表","♡"],["資料備份","💾"]
+
+];
+
+const shopOptions=[
+
+ "C99","Moya","Yb","Tx梨","Chihouse 77",
+
+ "Moon","arrebol","another",
+
+ "蝦皮（自行填寫）","其他（自行填寫）"
+
+];
+
+const categoryOptions=[
+
+ "服飾","包包","化妝品","保養品","養樂多","其他（自行填寫）"
+
+];
+
+const paymentOptions=[
+
+ "安泰信用卡","國泰信用卡","星展信用卡",
+
+ "匯款","貨到付款","其他（自行填寫）"
+
+];
+
+const pickupOptions=[
+
+ "7-ELEVEN","全家","蝦皮店到店","宅配",
+
+ "公司","家裡","其他（自行填寫）"
+
+];
+
+const statusOptions=[
+
+ "備貨中","已出貨","已到貨未取","已取貨","退貨"
+
+];
+
+let records=[];
+
+let currentShop="";
+
+let photoData=[];
+
+function loadData(){
+
+ try{records=JSON.parse(localStorage.getItem("annie_records")||"[]")}
+
+ catch(e){records=[]}
+
+}
+
+function saveData(){
+
+ try{
+
+  localStorage.setItem("annie_records",JSON.stringify(records));
+
+ }catch(e){
+
+  alert("儲存空間不足，請減少圖片數量或大小。");
+
+ }
+
+}
+
+function money(n){
+
+ return "NT$"+Number(n||0).toLocaleString("en-US");
+
+}
+
+function toggleMenu(){
+
+ document.getElementById("drawer").classList.toggle("open");
+
+}
+
+function buildNav(){
+
+ document.getElementById("navs").innerHTML=menus.map(([name,icon])=>
+
+ `<button class="nav" onclick="showPage('${name}')">${icon}　${name}</button>`
+
+ ).join("");
+
+}
+
+function showPage(name){
+
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+
+ const page=document.getElementById(name);
+
+ if(page)page.classList.add("active");
+
+ document.querySelectorAll(".nav").forEach(b=>{
+
+  b.classList.toggle("active",b.textContent.includes(name));
+
+ });
+
+ document.getElementById("drawer").classList.remove("open");
+
+ refreshPage(name);
+
+ window.scrollTo(0,0);
+
+}
+
+function fillSelect(id,options){
+
+ document.getElementById(id).innerHTML=options.map(x=>
+
+ `<option value="${x}">${x}</option>`).join("");
+
+}
+
+function customField(selectId,inputId,options){
+
+ const selected=document.getElementById(selectId).value;
+
+ const input=document.getElementById(inputId);
+
+ input.hidden=!options.includes(selected);
+
+ if(input.hidden)input.value="";
+
+}
+
+function getValue(id,customId){
+
+ const value=document.getElementById(id).value;
+
+ const custom=document.getElementById(customId);
+
+ if(custom && !custom.hidden){
+
+  return custom.value.trim()?(
+
+   value.startsWith("蝦皮")?"蝦皮｜"+custom.value.trim():custom.value.trim()
+
+  ):"";
+
+ }
+
+ return value;
+
+}
+
+function previewPhotos(){
+
+ photoData=[];
+
+ const files=[...document.getElementById("photos").files];
+
+ const preview=document.getElementById("photoPreview");
+
+ preview.innerHTML="";
+
+ files.forEach(file=>{
+
+  const reader=new FileReader();
+
+  reader.onload=e=>{
+
+   photoData.push(e.target.result);
+
+   const img=document.createElement("img");
+
+   img.src=e.target.result;
+
+   preview.appendChild(img);
+
+  };
+
+  reader.readAsDataURL(file);
+
+ });
+
+}
+
+function saveRecord(){
+
+ const shop=getValue("shop","shopCustom");
+
+ const amount=Number(document.getElementById("amount").value);
+
+ const category=getValue("category","categoryCustom");
+
+ const pickup=getValue("pickup","pickupCustom");
+
+ const payment=getValue("payment","paymentCustom");
+
+ const date=document.getElementById("date").value;
+
+ if(!shop||!amount||amount<=0||!category||!pickup||!payment||!date){
+
+  alert("請確認必填欄位都有填寫！");
+
+  return;
+
+ }
+
+ const record={
+
+  id:Date.now(),shop,amount,category,pickup,payment,date,
+
+  status:document.getElementById("status").value,
+
+  product:document.getElementById("product").value.trim(),
+
+  note:document.getElementById("note").value.trim(),
+
+  photos:photoData
+
+ };
+
+ records.unshift(record);
+
+ saveData();
+
+ ["amount","product","note","shopCustom","categoryCustom",
+
+ "pickupCustom","paymentCustom","photos"].forEach(id=>{
+
+  document.getElementById(id).value="";
+
+ });
+
+ document.getElementById("photoPreview").innerHTML="";
+
+ photoData=[];
+
+ document.getElementById("shop").selectedIndex=0;
+
+ document.getElementById("category").selectedIndex=0;
+
+ document.getElementById("pickup").selectedIndex=0;
+
+ document.getElementById("payment").selectedIndex=0;
+
+ ["shop","category","pickup","payment"].forEach(id=>{
+
+  customField(id,id+"Custom",id==="shop"?["蝦皮（自行填寫）","其他（自行填寫）"]:["其他（自行填寫）"]);
+
+ });
+
+ refresh();
+
+ alert("購物紀錄已儲存 ♡");
+
+ showPage("我的購物清單");
+
+}
+
+function refresh(){
+
+ renderHome();
+
+ refreshPage(document.querySelector(".page.active")?.id);
+
+}
+
+function refreshPage(name){
+
+ if(name==="首頁")renderHome();
+
+ if(name==="店家總覽")renderShops();
+
+ if(name==="店家明細")renderShopDetails();
+
+ if(name==="我的購物清單")renderRecords();
+
+ if(name==="取貨地點")renderPickups();
+
+ if(name==="貨況管理")renderStatuses();
+
+ if(name==="每月分類花費總表")renderMonthly();
+
+}
+
+function renderHome(){
+
+ document.getElementById("allTotal").textContent=
+
+ money(records.reduce((s,r)=>s+Number(r.amount),0));
+
+ document.getElementById("recordCount").textContent=records.length+" 筆購物紀錄";
+
+}
+
+function renderShops(){
+
+ const search=(document.getElementById("shopSearch")?.value||"").toLowerCase();
+
+ const names=[...new Set([...shopOptions.filter(x=>!x.includes("自行填寫")), ...records.map(r=>r.shop)])];
+
+ const list=names.filter(n=>n.toLowerCase().includes(search));
+
+ document.getElementById("shopList").innerHTML=list.map(n=>{
+
+  const items=records.filter(r=>r.shop===n);
+
+  const total=items.reduce((s,r)=>s+r.amount,0);
+
+  return `<div class="shop-card" onclick="openShop('${escapeText(n)}')">
+
+   <b>${escapeText(n)}</b><p class="money">${money(total)}</p>
+
+   <div class="small">${items.length} 筆購物紀錄</div></div>`;
+
+ }).join("")||'<div class="empty">目前沒有店家紀錄 ♡</div>';
+
+ const sums=names.map(n=>[n,records.filter(r=>r.shop===n).reduce((s,r)=>s+r.amount,0)])
+
+ .filter(x=>x[1]>0);
+
+ const max=Math.max(1,...sums.map(x=>x[1]));
+
+ document.getElementById("shopBars").innerHTML=sums.map(([n,v])=>
+
+ `<div class="row"><span>${escapeText(n)}</span><b class="money">${money(v)}</b></div>
+
+ <div class="bar-bg"><div class="bar" style="width:${v/max*100}%"></div></div>`
+
+ ).join("")||'<div class="empty">尚無花費紀錄</div>';
+
+}
+
+function openShop(n){
+
+ currentShop=n;
+
+ showPage("店家明細");
+
+}
+
+function renderShopDetails(){
+
+ document.getElementById("shopDetailTitle").textContent=currentShop+"｜購物明細";
+
+ const list=records.filter(r=>r.shop===currentShop);
+
+ document.getElementById("shopDetails").innerHTML=list.map(recordHTML).join("")||
+
+ '<div class="empty">目前沒有購物紀錄</div>';
+
+}
+
+function recordHTML(r){
+
+ return `<div class="record">
+
+ <div class="row"><b>${escapeText(r.product||r.shop)}</b>
+
+ <b class="money">${money(r.amount)}</b></div>
+
+ <div class="small">${escapeText(r.shop)}｜${r.date}</div>
+
+ <div>${pill(r.category)}${pill(r.pickup)}${pill(r.payment)}${pill(r.status)}</div>
+
+ ${r.note?`<p class="small">${escapeText(r.note)}</p>`:""}
+
+ ${r.photos?.length?`<div class="photo-preview">${r.photos.map(p=>`<img src="${p}">`).join("")}</div>`:""}
+
+ <label>修改貨況</label>
+
+ <select onchange="changeStatus(${r.id},this.value)">
+
+ ${statusOptions.map(s=>`<option ${r.status===s?"selected":""}>${s}</option>`).join("")}
+
+ </select>
+
+ <button class="btn secondary block" onclick="deleteRecord(${r.id})">刪除這筆紀錄</button>
+
+ </div>`;
+
+}
+
+function pill(t){return `<span class="pill">${escapeText(t)}</span>`}
+
+function renderRecords(){
+
+ const q=(document.getElementById("recordSearch")?.value||"").toLowerCase();
+
+ const list=records.filter(r=>(r.shop+r.product+r.category+r.status).toLowerCase().includes(q));
+
+ document.getElementById("recordList").innerHTML=list.map(recordHTML).join("")||
+
+ '<div class="empty">目前沒有購物紀錄 ♡</div>';
+
+}
+
+function changeStatus(id,value){
+
+ const r=records.find(x=>x.id===id);
+
+ if(r){r.status=value;saveData();refresh();}
+
+}
+
+function deleteRecord(id){
+
+ if(!confirm("確定刪除這筆購物紀錄？"))return;
+
+ records=records.filter(r=>r.id!==id);
+
+ saveData();refresh();
+
+}
+
+function renderPickups(){
+
+ const names=[...new Set(records.map(r=>r.pickup))];
+
+ document.getElementById("pickupList").innerHTML=names.map((n,i)=>{
+
+  const list=records.filter(r=>r.pickup===n);
+
+  const pending=list.filter(r=>r.status==="已到貨未取").length;
+
+  return `<div class="pickup-card">
+
+   <div class="row" onclick="toggleDetail('pickup${i}')">
+
+    <b>${escapeText(n)}</b><span class="money">${pending} 件待取　⌄</span>
+
+   </div>
+
+   <div class="detail" id="pickup${i}">${list.map(r=>
+
+    `<p><b>${escapeText(r.product||r.shop)}</b><br>
+
+    <span class="small">${escapeText(r.shop)}｜${r.status}｜${money(r.amount)}</span></p>`
+
+   ).join("")}</div></div>`;
+
+ }).join("")||'<div class="empty">目前沒有取貨紀錄</div>';
+
+}
+
+function renderStatuses(){
+
+ document.getElementById("statusList").innerHTML=statusOptions.map((s,i)=>{
+
+  const list=records.filter(r=>r.status===s);
+
+  return `<div class="status-card">
+
+   <div class="row" onclick="toggleDetail('status${i}')">
+
+    <b>${s}</b><span class="money">${list.length} 筆　⌄</span>
+
+   </div>
+
+   <div class="detail" id="status${i}">${list.map(r=>
+
+    `<p><b>${escapeText(r.product||r.shop)}</b><br>
+
+    <span class="small">${escapeText(r.shop)}｜${money(r.amount)}</span></p>`
+
+   ).join("")||'<p class="small">目前沒有紀錄</p>'}</div>
+
+  </div>`;
+
+ }).join("");
+
+}
+
+function toggleDetail(id){
+
+ document.getElementById(id)?.classList.toggle("open");
+
+}
+
+function renderMonthly(){
+
+ const month=document.getElementById("month").value;
+
+ const list=records.filter(r=>r.date.slice(0,7)===month);
+
+ const total=list.reduce((s,r)=>s+r.amount,0);
+
+ document.getElementById("monthTitle").textContent=month.replace("-"," 年 ")+" 月總花費";
+
+ document.getElementById("monthTotal").textContent=money(total);
+
+ document.getElementById("monthCount").textContent=list.length+" 筆購物紀錄";
+
+ const cats=[...new Set(list.map(r=>r.category))];
+
+ const max=Math.max(1,...cats.map(c=>list.filter(r=>r.category===c).reduce((s,r)=>s+r.amount,0)));
+
+ document.getElementById("categoryBars").innerHTML=cats.map(c=>{
+
+  const v=list.filter(r=>r.category===c).reduce((s,r)=>s+r.amount,0);
+
+  return `<div class="row"><span>${escapeText(c)}</span><b class="money">${money(v)}</b></div>
+
+  <div class="bar-bg"><div class="bar" style="width:${v/max*100}%"></div></div>`;
+
+ }).join("")||'<div class="empty">這個月份沒有購物紀錄</div>';
+
+ document.getElementById("monthDetails").innerHTML=list.map(recordHTML).join("")||
+
+ '<div class="empty">目前沒有明細</div>';
+
+}
+
+function escapeText(s){
+
+ return String(s??"").replace(/[&<>"']/g,c=>({
+
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+
+ }[c]));
+
+}
+
+function exportData(){
+
+ const blob=new Blob([JSON.stringify(records,null,2)],{type:"application/json"});
+
+ const a=document.createElement("a");
+
+ a.href=URL.createObjectURL(blob);
+
+ a.download="Annie-Closet-Backup.json";
+
+ a.click();
+
+ URL.revokeObjectURL(a.href);
+
+}
+
+function importData(event){
+
+ const file=event.target.files[0];
+
+ if(!file)return;
+
+ const reader=new FileReader();
+
+ reader.onload=()=>{
+
+  try{
+
+   const data=JSON.parse(reader.result);
+
+   if(!Array.isArray(data))throw new Error();
+
+   if(!confirm("匯入資料會取代目前的購物紀錄，確定繼續？"))return;
+
+   records=data;saveData();refresh();
+
+   alert("資料還原完成 ♡");
+
+  }catch(e){alert("檔案格式錯誤");}
+
+ };
+
+ reader.readAsText(file);
+
+}
+
+function init(){
+
+ buildNav();
+
+ fillSelect("shop",shopOptions);
+
+ fillSelect("category",categoryOptions);
+
+ fillSelect("pickup",pickupOptions);
+
+ fillSelect("payment",paymentOptions);
+
+ fillSelect("status",statusOptions);
+
+ document.getElementById("date").value=new Date().toISOString().slice(0,10);
+
+ document.getElementById("month").value=new Date().toISOString().slice(0,7);
+
+ loadData();
+
+ renderHome();
+
+}
+
+init();
+
+</script>
+
+</body>
+
+</html>
